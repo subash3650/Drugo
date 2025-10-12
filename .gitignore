@@ -57,7 +57,7 @@ dashboard/package-lock.json
 docker-compose.override.yml
 *.bak
 *.log
-
+env
 # ===== Misc =====
 *.zip
 *.tar.gz
