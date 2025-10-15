@@ -8,12 +8,10 @@ load_dotenv()
 app = Flask(__name__, static_folder='dashboard', static_url_path='/dashboard')
 app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET', 'secret!')
 
-# Use threading mode to avoid eventlet/ssl issues in many environments (WSL/Windows)
 socketio = SocketIO(app, async_mode='threading', cors_allowed_origins="*")
 
 app.register_blueprint(api_bp, url_prefix='/api')
 
-# Serve dashboard index at root
 @app.route('/')
 def index():
     return app.send_static_file('index.html')
