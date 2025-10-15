@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: drug-mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  app:
+    build: .
+    container_name: drug-detect-app
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - FLASK_SECRET=${FLASK_SECRET}
+      - DEBUG_NLP=0
+    depends_on:
+      - mongo
+    volumes:
+      - hf_cache:/cache/huggingface
+
+volumes:
+  mongo_data:
+  hf_cache:
