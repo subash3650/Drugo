@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtualenvs
+venv/
+.env
+.venv/
+
+# Git
+.git
+.gitignore
+
+# Local caches / models
+cache/
+cache_hf/
+.cache/
+huggingface/
+hf_cache/
+transformers_cache/
+
+# OS / IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Node modules (if front-end)
+node_modules/
