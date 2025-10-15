@@ -7,7 +7,6 @@ API = 'http://localhost:5000/api/analyze'
 PLATFORMS = ['telegram', 'whatsapp', 'instagram']
 def generate_message(user_id):
     text = gen.text.sentence()
-    # occasionally insert drug-like token
     if random.random() < 0.05:
         text += " buy pills 💊 meet asap"
     return {

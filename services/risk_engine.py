@@ -1,7 +1,6 @@
 from services.db import get_db
 from datetime import datetime
 
-# configurable weights
 W_KEYWORD = 0.6
 W_SENTIMENT = 0.4
 HIGH_RISK_TH = 0.75
@@ -11,7 +10,6 @@ def compute_score(kw_flag, sentiment):
     s = 0.0
     if kw_flag:
         s += W_KEYWORD
-    # sentiment: POSITIVE/NEGATIVE with score
     mag = sentiment.get('score', 0)
     if sentiment.get('label') == 'NEGATIVE':
         s += W_SENTIMENT * mag
@@ -25,7 +23,6 @@ def update_user_and_score(user_id, platform, payload, nlp_res):
     level = 'LOW'
     if score >= HIGH_RISK_TH: level = 'HIGH'
     elif score >= MED_RISK_TH: level = 'MEDIUM'
-    # store metadata / anonymized entry
     doc = {
         'user_id': user_id,
         'platform': platform,
